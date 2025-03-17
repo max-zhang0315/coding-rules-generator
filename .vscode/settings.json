@@ -1,0 +1,13 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "files.exclude": {
+    "out": false,
+    "node_modules": false
+  },
+  "search.exclude": {
+    "out": true,
+    "node_modules": true
+  }
+} 

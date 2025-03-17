@@ -1,0 +1,74 @@
+{
+  "name": "coding-rules-generator",
+  "displayName": "AI Coding Rules Generator",
+  "description": "Generate project rules for AI coding assistants (Cursor, Windsurf, etc.)",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "coding-rules-generator.createRules",
+        "title": "Create AI Coding Rules",
+        "icon": "$(note)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "coding-rules-sidebar",
+          "title": "Coding Rules",
+          "icon": "$(notebook)"
+        }
+      ]
+    },
+    "views": {
+      "coding-rules-sidebar": [
+        {
+          "id": "codingRulesSidebar",
+          "name": "Rules Generator",
+          "when": "workspaceFolder"
+        }
+      ],
+      "explorer": [
+        {
+          "id": "codingRulesExplorer",
+          "name": "AI Coding Rules"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "coding-rules-generator.createRules",
+          "when": "view == codingRulesSidebar",
+          "group": "navigation"
+        },
+        {
+          "command": "coding-rules-generator.createRules",
+          "when": "view == codingRulesExplorer",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile"
+  },
+  "dependencies": {
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.24",
+    "@types/vscode": "^1.98.0"
+  }
+}
