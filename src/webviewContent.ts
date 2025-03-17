@@ -857,31 +857,25 @@ export function getWebviewContent(): string {
                 </label>
               </div>
               
-              <div class="subsection-title">行注释规范</div>
+              <div class="subsection-title">行级注释规范</div>
               <div class="option-group">
                 <div class="indent">
                   <div class="option-item">
-                    <input type="checkbox" id="line-above-code" checked onchange="updatePreview();"> 
+                    <input type="checkbox" id="line-above-code" onchange="updatePreview();"> 
                     <label for="line-above-code">代码上方必须有注释</label>
                   </div>
                   <div class="option-item">
                     <input type="checkbox" id="line-end-of-line" checked onchange="updatePreview();"> 
-                    <label for="line-end-of-line">允许行尾注释</label>
+                    <label for="line-end-of-line">不允许行尾注释</label>
                   </div>
                   <div class="option-item">
                     <input type="checkbox" id="line-complex-logic" checked onchange="updatePreview();"> 
                     <label for="line-complex-logic">复杂逻辑必须有注释</label>
                   </div>
                   <div style="margin-top: 10px;">
-                    <div class="section-subtitle">行注释示例:</div>
-                    <textarea id="line-template" oninput="updatePreview();">// 函数名称: functionName
-// 功能描述: 这个函数的作用是...
-// 参数: param1 - 参数1的描述, param2 - 参数2的描述
-// 返回值: 返回值的描述
-function functionName(param1, param2) {
-  // 这里是实现逻辑
-  return result; // 返回结果
-}</textarea>
+                    <div class="section-subtitle">行级注释示例:</div>
+                      <textarea id="line-template" oninput="updatePreview();">  // 注释内容
+</textarea>
                   </div>
                 </div>
               </div>
@@ -1245,7 +1239,7 @@ src/
             
           if (enableLineComments) {
             if (document.getElementById('line-above-code') && document.getElementById('line-above-code').checked) lineCommentRules.push('代码上方必须有行注释');
-            if (document.getElementById('line-end-of-line') && document.getElementById('line-end-of-line').checked) lineCommentRules.push('允许行尾注释');
+            if (document.getElementById('line-end-of-line') && document.getElementById('line-end-of-line').checked) lineCommentRules.push('不允许行尾注释');
             if (document.getElementById('line-complex-logic') && document.getElementById('line-complex-logic').checked) lineCommentRules.push('复杂逻辑必须有注释');
             
             const lineTemplate = document.getElementById('line-template');
@@ -1357,19 +1351,19 @@ src/
               content += "\\n";
               
               content += "#### 块注释模板:\\n";
-              content += "\`\`\`js\\n" + blockCommentTemplate + "\\n\`\`\`\\n\\n";
+              content += "\`\`\`code\\n" + blockCommentTemplate + "\\n\`\`\`\\n\\n";
             }
             
             // 行注释规则
             if (enableLineComments && lineCommentRules.length > 0) {
-              content += "### 行注释规则\\n";
+              content += "### 行级注释规则\\n";
               lineCommentRules.forEach(rule => {
                 content += "  - " + rule + "\\n";
               });
               content += "\\n";
               
-              content += "#### 行注释示例:\\n";
-              content += "\`\`\`js\\n" + lineCommentTemplate + "\\n\`\`\`\\n\\n";
+              content += "#### 行级注释示例:\\n";
+              content += "\`\`\`code\\n" + lineCommentTemplate + "\\n\`\`\`\\n\\n";
             }
           }
           

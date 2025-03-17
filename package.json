@@ -3,8 +3,13 @@
   "displayName": "AI Coding Rules Generator",
   "description": "Generate project rules for AI coding assistants (Cursor, Windsurf, etc.)",
   "version": "0.1.0",
+  "publisher": "ai-tooling",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/coding-rules-generator.git"
+  },
   "engines": {
-    "vscode": "^1.98.0"
+    "vscode": "^1.80.0"
   },
   "categories": [
     "Other"
@@ -15,7 +20,7 @@
     "commands": [
       {
         "command": "coding-rules-generator.createRules",
-        "title": "Create AI Coding Rules",
+        "title": "AI Coding Rules Generator",
         "icon": "$(note)"
       }
     ],
@@ -69,6 +74,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.17.24",
-    "@types/vscode": "^1.98.0"
+    "@types/vscode": "^1.80.0"
   }
 }
