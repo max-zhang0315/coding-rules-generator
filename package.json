@@ -3,7 +3,7 @@
   "displayName": "AI Coding Rules Generator",
   "description": "Generate project rules for AI coding assistants (Cursor, Windsurf, etc.)",
   "version": "0.1.0",
-  "publisher": "ai-tooling",
+  "publisher": "EDE TEAM",
   "repository": {
     "type": "git",
     "url": "https://github.com/your-username/coding-rules-generator.git"
