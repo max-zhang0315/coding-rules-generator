@@ -970,6 +970,42 @@ React >= 18.0.0" oninput="updatePreview();"></textarea>
                   </p>
                 </div>
               </div>
+
+              <div class="field" style="margin-top: 15px;">
+                <div>
+                  <input type="checkbox" id="file-line-limit" checked onchange="updatePreview();"> 
+                  <label for="file-line-limit">文件行数限制</label>
+                </div>
+                <div class="indent" style="margin-top: 5px;">
+                  <p style="margin: 0 0 5px 0; font-size: 0.9em; color: #aaa;">
+                    启用后，AI将被提示在生成文件时限制文件行数，避免文件过于臃肿
+                  </p>
+                </div>
+              </div>
+
+              <div class="field" style="margin-top: 15px;">
+                <div>
+                  <input type="checkbox" id="code-review" checked onchange="updatePreview();"> 
+                  <label for="code-review">代码审查</label>
+                </div>
+                <div class="indent" style="margin-top: 5px;">
+                  <p style="margin: 0 0 5px 0; font-size: 0.9em; color: #aaa;">
+                    启用后，AI将被提示在生成文件时进行代码审查，避免代码质量问题
+                  </p>
+                </div>
+              </div>
+
+              <div class="field" style="margin-top: 15px;">
+                <div>
+                  <input type="checkbox" id="follow-business-logic" checked onchange="updatePreview();"> 
+                  <label for="follow-business-logic">遵循原有业务逻辑</label>
+                </div>
+                <div class="indent" style="margin-top: 5px;">
+                  <p style="margin: 0 0 5px 0; font-size: 0.9em; color: #aaa;">
+                    启用后，AI将被提示在生成代码时遵循原有业务逻辑，避免破坏原有业务
+                  </p>
+                </div>
+              </div>
             </div>
             
             <div class="subsection">
@@ -1284,6 +1320,15 @@ src/
             
             const fileStructInput = document.getElementById('file-structure');
             if (fileStructInput) fileStructure = fileStructInput.value;
+
+            const fileLineLimitInput = document.getElementById('file-line-limit');
+            if (fileLineLimitInput) fileLineLimit = fileLineLimitInput.checked;
+
+            const codeReviewInput = document.getElementById('code-review');
+            if (codeReviewInput) codeReview = codeReviewInput.checked;
+
+            const followBusinessLogicInput = document.getElementById('follow-business-logic');
+            if (followBusinessLogicInput) followBusinessLogic = followBusinessLogicInput.checked;
           }
           
           // 收集其他规则
@@ -1382,13 +1427,13 @@ src/
           }
           
           // 协同开发规范 - 如果启用
-          if (enableCollaboration && (updateDirectory || trackRequirements)) {
+          if (enableCollaboration && (updateDirectory || trackRequirements || fileLineLimit || codeReview || followBusinessLogic)) {
             content += "## 协同开发规范\\n";
             
             // 项目目录更新
             if (updateDirectory) {
               content += "### 项目目录更新\\n";
-              content += "- 当生成新文件或修改目录结构时，请更新.struct_rules文件以记录项目结构\\n\\n";
+              content += "- 当生成新文件或修改目录结构时，请更新 .struct_rules 文件以记录项目结构\\n\\n";
               
               if (fileStructure) {
                 content += "#### 目录结构模板\\n";
@@ -1399,7 +1444,25 @@ src/
             // 需求追踪
             if (trackRequirements) {
               content += "### 需求追踪\\n";
-              content += "- 当讨论新需求或需求变更时，请更新.prd_rules文件以记录需求变更\\n\\n";
+              content += "- 当讨论新需求或需求变更时，请更新 .prd_rules 文件以记录需求变更\\n\\n";
+            }
+
+            // 文件行数限制
+            if (fileLineLimit) {
+              content += "### 文件行数限制\\n";
+              content += "- 每个文件最多生成500行代码，如果超出，请分多个文件生成\\n\\n";
+            }
+
+            // 代码审查
+            if (codeReview) {
+              content += "### 代码审查\\n";
+              content += "- 在生成文件时，请进行代码审查，避免代码质量问题\\n\\n";
+            }
+
+            // 遵循原有业务逻辑
+            if (followBusinessLogic) {
+              content += "### 遵循原有业务逻辑\\n";
+              content += "- 在生成代码时，请遵循原有业务逻辑，避免破坏原有业务\\n\\n";
             }
           }
           

@@ -2,8 +2,8 @@
   "name": "coding-rules-generator",
   "displayName": "AI Coding Rules Generator",
   "description": "Generate project rules for AI coding assistants (Cursor, Windsurf, etc.)",
-  "version": "0.1.0",
-  "publisher": "EDE TEAM",
+  "version": "0.1.1",
+  "publisher": "EDETEAM",
   "repository": {
     "type": "git",
     "url": "https://github.com/your-username/coding-rules-generator.git"
